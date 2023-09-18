@@ -6,9 +6,9 @@
 header("Content-Type: application/json");
 
 $servername = "localhost";
-$username = "id20158736_admin";
-$password = "WnFnE6Pa9LZ6LF!";
-$databaseName = "id20158736_weatheresp";
+$username = "trendwave";
+$password = "ybnykF4ACMnSpU";
+$databaseName = "TrendWave";
 
 $conn = new mysqli($servername, $username, $password, $databaseName);
 
