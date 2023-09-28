@@ -35,13 +35,13 @@ if ($conn->connect_error) {
         $followed = $_GET["followed"];
         $result = editFollowing($conn, $uuid, $follower, $followed);
         echo $result;
-    }else if(isset($_GET['uuid']) && isset($_GET['followed']) && isset($_GET['remove'])){
+    }else if(isset($_GET['uuid']) && isset($_GET['followed']) && isset($_GET['remove']) && !isset($_GET['following'])){
         $uuid = $_GET["uuid"];
         $follower = $_GET["followed"];
     }else if(isset($_GET["uuid"]) && isset($_GET["follower"]) && isset($_GET["remove"])){
         $uuid = $_GET["uuid"];
         $followed = $_GET["follower"];
-        $result = editFollowed($conn, $uuid, $followed);
+        $result = editFollow($conn, $uuid, $followed);
         echo $result;
     }else if(isset($_GET["uuid"]) && isset($_GET["following"]) && isset($_GET["remove"]) && isset($_GET["followed"])){
         $uuid = $_GET["uuid"];
@@ -57,16 +57,6 @@ if ($conn->connect_error) {
  */
  function editFollow($conn, $uuid, $follower){
     $sql = "UPDATE newsuser SET follower = $follower WHERE uuid = '$uuid'";
-    $result = $conn->query($sql);
-    return $result; 
- }
-
-
- /**
- * rem follow
- */
-function editFollowed($conn, $uuid, $followed){
-    $sql = "UPDATE newsuser SET followed = $followed WHERE uuid = '$uuid'";
     $result = $conn->query($sql);
     return $result; 
  }
