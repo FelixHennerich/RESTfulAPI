@@ -61,6 +61,8 @@ if ($conn->connect_error) {
     return $result; 
  }
 
+ 
+
 
  /**
  * Add following to database
