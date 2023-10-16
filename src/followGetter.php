@@ -54,7 +54,8 @@ if ($conn->connect_error) {
 
 
 /**
- * Add follow
+ * Add f
+ * ollow
  */
  function editFollow($conn, $uuid, $follower){
     $sql = "UPDATE newsuser SET follower = $follower WHERE uuid = '$uuid'";
