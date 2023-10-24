@@ -53,7 +53,6 @@ if ($conn->connect_error) {
 }
 
 
-
 /**
  * Add follow
  */
@@ -62,8 +61,6 @@ if ($conn->connect_error) {
     $result = $conn->query($sql);
     return $result; 
  }
-
-
 
 
 
