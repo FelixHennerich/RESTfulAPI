@@ -63,7 +63,6 @@ if ($conn->connect_error) {
  }
 
 
-
  /**
  * Add following to database
  */
