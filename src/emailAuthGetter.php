@@ -7,6 +7,7 @@ $databaseName = "TrendWave";
 
 $conn = new mysqli($servername, $username, $password, $databaseName);
 
+
 if ($conn->connect_error) {
     die("Verbindung zur Datenbank fehlgeschlagen: " . $conn->connect_error);
 }
