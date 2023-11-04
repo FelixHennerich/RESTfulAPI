@@ -14,6 +14,7 @@ if ($conn->connect_error) {
 
 
 
+
 if($_SERVER["REQUEST_METHOD"] === "GET"){
     if(isset($_GET["uuid"]) && isset($_GET["code"])){
         // CREATION OF NEW CODE AND RETURN OF IT
