@@ -122,7 +122,7 @@ if ($conn->connect_error) {
  */
 
  function createUser($conn, $uuid, $email, $username, $password, $signup, $birthday, $role){
-    $sql = "INSERT INTO newsuser (uuid, email, password, username, birthday, signup, role, follower, following, followed) VALUES ('$uuid','$email','$password','$username','$birthday','$signup','$role',0,0,'')";
+    $sql = "INSERT INTO newsuser (uuid, email, password, username, birthday, signup, role, follower, following, followed, homebuttons) VALUES ('$uuid','$email','$password','$username','$birthday','$signup','$role',0,0,'','')";
     $result = $conn->query($sql);
     return $result;
  }
