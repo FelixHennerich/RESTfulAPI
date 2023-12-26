@@ -30,16 +30,14 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
 }
 
 
-
-
 function getNewCode($conn, $code, $uuid){
-    $sql = "INSERT INTO emailauth (code, uuid, available) VALUES (\'$code\', \'$uuid\', true)";
+    $sql = "INSERT INTO emailauth (code, uuid, available) VALUES ('$code', '$uuid', true)";
     $result = $conn->query($sql); 
-    return $result;
+    return "okay";
 }
 
 function getCodeByUUID($conn, $uuid){
-    $sql = "SELECT FROM emailauth WHERE uuid = \'$uuid\' AND available = true";
+    $sql = "SELECT FROM emailauth WHERE uuid = '$uuid' AND available = true";
     $result = $conn->query($sql);
     return $result;
 }
