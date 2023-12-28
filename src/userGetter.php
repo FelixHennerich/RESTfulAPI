@@ -22,7 +22,12 @@ if ($conn->connect_error) {
  */
 
  if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    if (isset($_GET["uuid"]) && !isset($_GET["delete"])) {
+    if(isset($_GET["uuid"]) && isset($_GET["homebuttons"])){
+        $uuid = $_GET["uuid"];
+        $homebuttons = $_GET["homebuttons"];
+        $result = updateHomeButtons($conn, $homebuttons, $uuid);
+        echo $result;
+    }else if (isset($_GET["uuid"]) && !isset($_GET["delete"])) {
         $uuid = $_GET["uuid"];
         $user = findUserById($conn, $uuid);
         if ($user) {
@@ -183,4 +188,10 @@ if ($conn->connect_error) {
     return $result;
  }
  
+
+ function updateHomeButtons($conn, $homebuttons, $uuid) {
+    $sql = "UPDATE newsuser SET homebuttons = '$homebuttons' WHERE uuid = '$uuid'";
+    $result = $conn->query($sql);
+    return $result;
+ }
 ?>

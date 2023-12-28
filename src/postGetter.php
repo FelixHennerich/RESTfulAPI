@@ -29,8 +29,8 @@ if ($conn->connect_error) {
         if ($post) {
             echo json_encode($post);
         } else {
-            http_response_code(404); // Benutzer nicht gefunden
-            echo json_encode(["error" => "Benutzer nicht gefunden"]);
+            http_response_code(404);
+            echo json_encode(["error" => "Post nicht gefunden"]);
         }
     } else if(isset($_GET["uuid"])) {
         $uuid = $_GET["uuid"];
@@ -45,12 +45,13 @@ if ($conn->connect_error) {
         echo json_encode($posts);
     }
 }else if($_SERVER["REQUEST_METHOD"] === "POST"){
-    if(isset($_GET["id"]) && isset($_GET["uuid"]) && isset($_GET["date"]) && isset($_GET["text"])){
+    if(isset($_GET["id"]) && isset($_GET["uuid"]) && isset($_GET["date"]) && isset($_GET["text"]) && isset($_GET["theme"])){
         $id = $_GET["id"];
         $uuid = $_GET["uuid"];
         $date = $_GET["date"];
         $text = $_GET["text"];
-        $result = createPost($conn, $id, $uuid, $date, $text);
+        $theme = $_GET["theme"];
+        $result = createPost($conn, $id, $uuid, $date, $text, $theme);
         echo $result; 
     }
 }
@@ -59,8 +60,8 @@ if ($conn->connect_error) {
  * Upload post
  */
 
- function createPost($conn, $id, $uuid, $date, $text){
-    $sql = "INSERT INTO posts(id, uuid, date, text) VALUES ('$id', '$uuid', '$date', '$text')";
+ function createPost($conn, $id, $uuid, $date, $text, $theme){
+    $sql = "INSERT INTO posts(id, uuid, date, text, theme) VALUES ('$id', '$uuid', '$date', '$text', '$theme')";
     $result = $conn->query($sql);
     return $result;
  }
@@ -71,7 +72,7 @@ if ($conn->connect_error) {
  */
 
  function findPostById($conn, $id) {
-    $sql = "SELECT * FROM posts WHERE id = $id";
+    $sql = "SELECT * FROM posts WHERE id = '$id'";
     $result = $conn->query($sql);
 
     if ($result->num_rows === 1) {
